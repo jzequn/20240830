@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+'use client';
+import React, { useEffect, useState, Suspense } from 'react'
 import {
-    Page
+    Page,
 } from 'react-pdf';
 
 import sass from './pdfPage.module.scss';
 import { FaArrowsRotate } from "react-icons/fa6";
-
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 const PDFPage = ({ page, handleRotate, rotate, zoom }) => {
 
@@ -29,11 +31,15 @@ const PDFPage = ({ page, handleRotate, rotate, zoom }) => {
             className={sass.pdf}
             onClick={handleClick}
         >
-            <Page
-                height={300*currentZoom}
-                width={225*currentZoom}
-                rotate={currentRotate}
-                pageNumber={page + 1} />
+
+            <Suspense fallback={<>Loading...</>}>
+                <Page
+                    height={300 * currentZoom}
+                    width={225 * currentZoom}
+                    rotate={currentRotate}
+                    pageNumber={page + 1} />
+            </Suspense>
+
 
             <span className={sass.rotate}><FaArrowsRotate /></span>
             <span className={sass.pageNumber}>{page + 1}</span>

@@ -1,28 +1,14 @@
 "use client";
-import Image from "next/image";
-import { useCallback, useState } from "react";
-// import sass from './globals.scss';
+import { useCallback, useState, Suspense } from "react";
 import sass from './page.module.scss';
 import { useDropzone } from 'react-dropzone'
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { toast,ToastContainer } from 'react-toastify';
-// import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-// import { BlobProvider, Document, Page } from '@react-pdf/renderer';
-
-
-import { Document, Page, pdfjs } from 'react-pdf';
+import { toast, ToastContainer } from 'react-toastify';
 import PDFFiles from "@/components/pdfFiles";
-import PDFFileDownload from "@/components/pdfFileDownload";
-import { PDFDownloadLink } from '@react-pdf/renderer';
-
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).toString();
-export default function Home() {
 
+export default function Home() {
   const [URL, setURL] = useState('');
   const [file, setFile] = useState(null);
   const notify = (message) => toast(message);
@@ -30,9 +16,6 @@ export default function Home() {
   // const [base64, setBase64] = useState('');
   // const [blob, setBlob] = useState(null);
   // const [pdf, setPDF] = useState(null);
-
-
-
   const onDrop = useCallback((acceptedFiles, fileRejections) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
@@ -63,9 +46,8 @@ export default function Home() {
     })
 
     const fileRejectionItems = fileRejections.forEach(({ file, errors }) => {
-      console.log(errors);
-      // notify(errors.message);
-      console.log(errors[0].message)
+      // console.log(errors);
+      // console.log(errors[0].message)
       notify('Filetype must be pdf!')
     });
 
@@ -106,13 +88,15 @@ export default function Home() {
               <p>Simply click on a page to rotate it. You can then download your modified PDF.</p>
             </div>
             <div className={sass.pdf}>
-              <PDFFiles
-                url={URL}
-                binary={binaryStr}
-                file={file}
-                handleRemoveFile={handleRemoveFile}
-              />
 
+              <Suspense fallback={<>Loading...</>}>
+                <PDFFiles
+                  url={URL}
+                  binary={binaryStr}
+                  file={file}
+                  handleRemoveFile={handleRemoveFile}
+                />
+              </Suspense>
               {/* Todo change pdf filename,  */}
               {/* Notification upload error, filetype should be pdfF */}
 
@@ -123,7 +107,7 @@ export default function Home() {
         )
       }
 
-      <ToastContainer/>
+      <ToastContainer />
     </main>
   );
 } 

@@ -10,6 +10,29 @@ const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// solve TypeError: Promise.withResolvers is not a function, need to install core-js
+import 'core-js/full/promise/with-resolvers.js';
+if (typeof Promise.withResolvers === 'undefined') {
+  if (typeof window !== 'undefined') {
+    window.Promise.withResolvers = function () {
+      let resolve, reject;
+      const promise = new Promise((res, rej) => {
+        resolve = res;
+        reject = rej;
+      });
+      return { promise, resolve, reject };
+    };
+  } else {
+    global.Promise.withResolvers = function () {
+      let resolve, reject;
+      const promise = new Promise((res, rej) => {
+        resolve = res;
+        reject = rej;
+      });
+      return { promise, resolve, reject };
+    };
+  }
+}
 
 export const metadata = {
   title: "PDF.ai",

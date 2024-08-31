@@ -11,8 +11,11 @@ importers:
       '@react-pdf/renderer':
         specifier: ^3.4.4
         version: 3.4.4(react@18.3.1)
+      core-js:
+        specifier: ^3.38.1
+        version: 3.38.1
       next:
-        specifier: 14.2.7
+        specifier: ^14.2.7
         version: 14.2.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
       pdf-lib:
         specifier: ^1.17.1
@@ -507,6 +510,9 @@ packages:
 
   console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
+
+  core-js@3.38.1:
+    resolution: {integrity: sha512-OP35aUorbU3Zvlx7pjsFdu1rGNnD4pgw/CWoYzRY3t2EzoVT7shKHY1dlAy3f41cGIO7ZDPQimhGFTlEYkG/Hw==}
 
   cross-fetch@3.1.8:
     resolution: {integrity: sha512-cvA+JwZoU0Xq+h6WkMvAUqPEYy92Obet6UdKLfW60qn99ftItKjB5T+BkyWOFWe2pUyfQ+IJHmpOTznqk1M6Kg==}
@@ -2467,6 +2473,8 @@ snapshots:
 
   console-control-strings@1.1.0:
     optional: true
+
+  core-js@3.38.1: {}
 
   cross-fetch@3.1.8:
     dependencies:

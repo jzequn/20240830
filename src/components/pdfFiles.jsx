@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+'use client';
+import { useState } from 'react'
 import {
     Document,
-    Page, pdfjs
+    pdfjs
 } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+
 import sass from './pdfFiles.module.scss';
 import PDFPage from './pdfPage';
 
@@ -16,11 +18,21 @@ import {
 } from 'pdf-lib';
 
 
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    'pdfjs-dist/legacy/build/pdf.worker.min.mjs',
+    import.meta.url
+).toString();
+
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//     'pdfjs-dist/build/pdf.worker.min.mjs',
+//     import.meta.url,
+// ).toString();
+
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
 const PDFFiles = ({ url, binary, file, handleRemoveFile }) => { // file or binaryStr, binaryStr do not work sometimes, how to solve it?
-    pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-        'pdfjs-dist/build/pdf.worker.min.mjs',
-        import.meta.url,
-    ).toString();
 
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
@@ -36,7 +48,7 @@ const PDFFiles = ({ url, binary, file, handleRemoveFile }) => { // file or binar
                 // console.log('enough:', prev)
                 return prev;
             } else {
-                let updateZoom = prev+0.1;
+                let updateZoom = prev + 0.1;
                 updateZoom = updateZoom.toFixed(1);
                 // console.log('zoom + 0.1:', updateZoom)
                 return +updateZoom;
@@ -49,7 +61,7 @@ const PDFFiles = ({ url, binary, file, handleRemoveFile }) => { // file or binar
                 // console.log('enough:', prev)
                 return prev;
             } else {
-                let updateZoom = prev-0.1;
+                let updateZoom = prev - 0.1;
                 updateZoom = updateZoom.toFixed(1);
                 // console.log('zoom - 0.1:', updateZoom)
                 return +updateZoom;
@@ -110,8 +122,6 @@ const PDFFiles = ({ url, binary, file, handleRemoveFile }) => { // file or binar
 
 
     return (
-
-
         <Document
             // file={blob}
             // file={{

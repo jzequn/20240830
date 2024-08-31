@@ -2,6 +2,7 @@
 import React from 'react'
 import sass from './footer.module.scss';
 import Image from 'next/image';
+import Favicon from '../app/favicon.ico';
 import { IconContext } from "react-icons";
 import { FaTiktok } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -15,7 +16,8 @@ const Footer = () => {
                 <div className={sass.socialMedia}>
                     <Image
                         className={sass.logo}
-                        src="/favicon.ico"
+                        // src="/favicon.ico"
+                        src={Favicon}
                         alt="PDF.ai logo"
                         width={25}
                         height={25}

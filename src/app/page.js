@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import sass from './page.module.scss';
 import { useDropzone } from 'react-dropzone'
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { toast } from 'react-toastify';
+import { toast,ToastContainer } from 'react-toastify';
 // import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 // import { BlobProvider, Document, Page } from '@react-pdf/renderer';
 
@@ -33,10 +33,9 @@ export default function Home() {
 
 
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles, fileRejections) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
-
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
@@ -63,8 +62,19 @@ export default function Home() {
       reader.readAsArrayBuffer(file)
     })
 
+    const fileRejectionItems = fileRejections.forEach(({ file, errors }) => {
+      console.log(errors);
+      // notify(errors.message);
+      console.log(errors[0].message)
+      notify('Filetype must be pdf!')
+    });
+
   }, [])
-  const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop, accept: {
+      'application/pdf': ['.pdf'],
+    }
+  })
 
   const handleRemoveFile = () => {
     setBinary('');
@@ -113,7 +123,7 @@ export default function Home() {
         )
       }
 
-
+      <ToastContainer/>
     </main>
   );
 } 

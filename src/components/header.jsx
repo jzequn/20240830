@@ -49,7 +49,7 @@ const Header = () => {
                 >
                     <GiHamburgerMenu />
                 </div>
-                <ul className={`${sass.dropdown} ${open ? sass.hide : ''}`}>
+                <ul className={`${sass.dropdown} ${open ? '' : sass.hide}`}>
                     <li><a href="#">Pricing</a></li>
                     <li><a href="#">Chrome extension</a></li>
                     <li><a href="#">Use cases</a></li>

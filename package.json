@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "packageManager": "pnpm@9.6.0",
   "dependencies": {
     "@react-pdf/renderer": "^3.4.4",
     "next": "14.2.7",

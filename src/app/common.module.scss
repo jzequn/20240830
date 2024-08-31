@@ -1,0 +1,161 @@
+$mr-05: .5rem;
+$mr-1: 1rem;
+$mr-2: 2rem;
+$m-1: 1rem;
+$m-12: 1.2rem;
+$m-13: 1.3rem;
+$m-14: 1.4rem;
+$m-15: 1.5rem;
+$m-17: 1.7rem;
+$m-18: 1.8rem;
+$m-19: 1.9rem;
+$m-2: 2rem;
+$m-25: 2.5rem;
+
+$m-3: 3rem;
+
+$m-4: 4rem;
+
+// font color
+$black-1: rgb(0, 0, 0);
+$black-2: rgb(33, 41, 54);
+$white-1: rgb(255, 255, 255);
+$white-2: rgb(248, 245, 239);
+
+$grey-00: #cecece;
+$grey-01: rgb(156 163 175);
+$grey-02: rgb(107 114 128);
+$grey-1: rgb(75 85 99);
+$grey-2: rgb(17 24 39);
+
+$orange-1: rgb(255, 97, 47);
+
+// font size
+$fs-05: 0.5rem;
+$fs-06: 0.6rem;
+$fs-07: 0.7rem;
+$fs-08: 0.8rem;
+$fs-09: 0.9rem;
+$fs-1: 1rem;
+$fs-12: 1.2rem;
+$fs-13: 1.3rem;
+$fs-14: 1.4rem;
+$fs-15: 1.5rem;
+$fs-2: 2rem;
+$fs-3: 3rem;
+$fs-4: 4rem;
+
+
+// gap
+$gap-2: 2rem;
+$gap-4: 4rem;
+$gap-6: 6rem;
+
+@font-face {
+    font-family: 'Tiempose';
+    src: url('./tiempos-headline-light.woff2') format('woff2');
+    // font-weight: normal;
+    // font-style: normal;
+}
+
+@mixin flexLayout($direction: row, $justify-content: center, $align-items: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+
+/* Media Queries */
+$size__site_content_width: 1280px;
+$media_queries : ('mobile' : unquote("only screen and (max-width: 768px)"),
+    'tablet' : unquote("only screen and (min-width: 769px) and (max-width: $size__site_content_width)"),
+    'desktop' : unquote("only screen and (min-width: ($size__site_content_width + 1))"),
+    'retina2' : unquote("only screen and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi)"),
+    'retina3' : unquote("only screen and (-webkit-min-device-pixel-ratio: 3) and (min-resolution: 288dpi)"),
+    'landscape' : unquote("screen and (orientation:landscape) "),
+    'portrait' : unquote("screen and (orientation:portrait) "));
+
+@mixin device($breakpoints) {
+    $conditions : ();
+
+    @each $breakpoint in $breakpoints {
+        // If the key exists in the map
+        $conditions: append($conditions,
+                #{inspect(map-get($media_queries, $breakpoint))},
+                comma);
+    }
+
+    @media #{$conditions} {
+        @content;
+    }
+}
+
+@mixin link {
+    a {
+        // font-size: c.$fs-09;
+        font-family: var(--sans);
+        // font-weight: bold;
+        color: $black-1;
+        font-size: $fs-09;
+        text-decoration: none;
+
+        &:visited,
+        &:link {
+            // color: c.$grey-1;
+            // color: $grey-1;
+            color: $black-1;
+        }
+
+        &:hover,
+        &:active {
+            // color: c.$grey-2;
+            color: $grey-2;
+            text-decoration: underline;
+        }
+    }
+}
+
+@mixin btn-orange {
+    .btnOrange {
+        // border: 1px solid c.$orange-1;
+        // color: c.$white-1;
+        // background-color: c.$orange-1;
+        // width: 6rem;
+        // height: 2.5rem;
+        // border-radius: 5px;
+        // @include c.flexLayout();
+        // margin: c.$m-2 0;
+        // font-size: c.$fs-1;
+        // box-shadow: 0 0 0px 0px c.$grey-01;
+        // cursor: pointer;
+
+        border: 1px solid $orange-1;
+        color: $white-1;
+        background-color: $orange-1;
+        width: 6rem;
+        height: 2.5rem;
+        border-radius: 5px;
+        @include flexLayout();
+        margin: $m-2 0;
+        font-size: $fs-1;
+        box-shadow: 0 0 0px 0px $grey-01;
+        cursor: pointer;
+    }
+}
+
+@mixin btn-black {
+    .btnBlack {
+        border: 1px solid $black-2;
+        color: $white-1;
+        background-color: $black-2;
+        width: 8rem;
+        height: 2.5rem;
+        border-radius: 5px;
+        @include flexLayout();
+        margin: $m-2 0;
+        font-size: $fs-1;
+        box-shadow: 0 0 0px 0px $grey-01;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,40 @@
+@use '../app/common.module.scss' as c;
+
+
+.document {
+    @include c.flexLayout(column, center, center);
+
+
+    .btns{
+        @include c.flexLayout();
+        &>*{
+            margin-right: c.$m-1;
+        }
+    }
+
+    .zoom{
+        $size:2.5rem;
+        background-color: c.$white-1;
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        filter: drop-shadow(0px 0px 0px c.$grey-1);
+        @include c.flexLayout();
+        font-size: c.$fs-13;
+        transition: all 100ms ease-in;
+
+        &:hover{
+            transform: scale(1.11);
+        }
+    }
+}
+
+.pdfs {
+    @include c.flexLayout();
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+@include c.btn-orange;
+@include c.btn-black;

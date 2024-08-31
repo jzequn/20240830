@@ -1,0 +1,118 @@
+// @use '../app//globals.module.scss' as g;
+@use '../app/common.module.scss' as c;
+
+$height: 4rem;
+$width: 100vw;
+
+.nav {
+    height: $height;
+    width: $width;
+    // border: 1px solid green;
+    background-color: c.$white-1;
+    @include c.flexLayout(row, space-between, center);
+    position: relative;
+
+    .a {
+        @include c.flexLayout(row, space-between, center);
+        height: 50%;
+        width: 6rem;
+        font-size: 2rem;
+        margin-left: c.$m-15;
+        // border: 1px solid red;
+        text-decoration: none;
+
+        .svg {
+            // @include c.flexLayout();
+            // $size: 190%;
+            border: 1px solid grey;
+            // width: $size;
+            // height: $size;
+            height: 5%;
+            width: 10%;
+        }
+
+        span {
+            font-family: var(--sans);
+            font-size: c.$fs-14;
+            // font-weight: bold;
+            color: c.$black-1;
+        }
+    }
+
+
+    .links {
+        @include c.flexLayout();
+        list-style: none;
+
+
+        li {
+            margin-right: c.$mr-1;
+            @include c.link;
+
+            a {
+                font-size: c.$fs-1;
+            }
+        }
+    }
+
+    .burger {
+        display: none;
+        cursor: pointer;
+
+        .icon {
+            font-size: c.$fs-15;
+            margin-right: c.$m-1;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: $height;
+            right: 0;
+            width: $width;
+            background-color: c.$white-1;
+            border-top: 1px solid c.$grey-00;
+            // links
+            @include c.flexLayout(column, flex-start, flex-start);
+            list-style: none;
+            font-size: 1rem;
+            padding: c.$m-1 c.$m-15;
+
+            li {
+                &:not(:last-of-type) {
+                    margin-bottom: c.$m-15;
+                }
+
+                color: c.$black-1;
+
+
+                @include c.link;
+
+                a {
+
+                    &:visited,
+                    :link {
+                        color: c.$black-1;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .hide {
+            display: none;
+        }
+    }
+
+    @include c.device(mobile) {
+        .links {
+            display: none;
+        }
+
+        .burger {
+            display: block;
+        }
+    }
+}

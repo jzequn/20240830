@@ -1,0 +1,62 @@
+@use '../app/common.module.scss' as c;
+
+
+.main {
+    background-color: c.$white-2;
+    // min-height: 90vh;
+    min-height: 70vh;
+    padding: c.$m-1;
+    @include c.flexLayout(column, center, center);
+}
+
+
+.instruction {
+    @include c.flexLayout(column, center, center);
+    width: 30rem;
+
+    // height: 40rem;
+    h1 {
+        font-family: var(--serif);
+        font-weight: lighter;
+        font-size: c.$fs-3;
+        margin-bottom: c.$m-2;
+        line-height: 1;
+    }
+
+    p {
+        font-size: c.$fs-1;
+        color: c.$grey-1;
+        margin-bottom: c.$m-25;
+        text-align: center;
+    }
+}
+
+.dropzone {
+    background-color: c.$white-1;
+    border: 1px dashed c.$grey-01;
+    border-radius: 5px;
+    font-size: c.$fs-09;
+    color: c.$grey-1;
+    height: 20rem;
+    width: 15rem;
+    @include c.flexLayout(column, center, center);
+    .icon {
+        font-size: c.$fs-2;
+        color: c.$grey-2;
+    }
+}
+
+.pdf{
+    // border: 1px dashed c.$grey-01;
+    // padding: c.$m-1;
+}
+
+.horizonatal {
+    height: 20rem;
+    width: 15rem;
+}
+
+.vertial{
+    height: 15rem;
+    width: 20rem;
+}

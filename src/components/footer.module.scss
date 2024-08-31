@@ -1,0 +1,113 @@
+@use '../app/common.module.scss' as c;
+// @use '../app/common.module.scss' as *;
+
+.footer {
+    width: 100vw;
+    padding: 0 c.$m-15;
+    padding-top: c.$gap-4;
+    // border: 1px solid grey;
+    h2,
+    h3 {
+        color: c.$black-1;
+        font-size: c.$fs-09;
+        margin-bottom: c.$m-19;
+    }
+
+    @include c.flexLayout();
+
+}
+
+.icons {
+    color: c.$grey-01;
+    font-size: c.$fs-14;
+
+    &:hover {
+        color: c.$grey-02;
+    }
+}
+
+.socialMedia {
+    ul {
+        list-style: none;
+        @include c.flexLayout(row, flex-start, center);
+
+        li {
+            margin-right: c.$m-15;
+            margin-bottom: c.$m-4;
+        }
+    }
+}
+
+.logo {
+    margin-bottom: c.$m-2;
+}
+
+.info {
+    font-size: c.$fs-1;
+    margin-bottom: c.$m-2;
+    color: c.$grey-02;
+    width: 30rem;
+}
+
+
+
+.grids {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    // gap: c.$gap-6;
+    // border: 1px solid red;
+    width: 100%;
+}
+
+.card {
+    ul {
+        list-style: none;
+
+        li {
+            margin-bottom: c.$m-14;
+        }
+    }
+
+    @include c.link;
+}
+
+
+
+@include c.device(mobile) {
+    .footer {
+        @include c.flexLayout(column, flex-start, flex-start);
+    }
+
+    .grids {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .info {
+        width: 100%;
+    }
+}
+
+// // doesn't work? why?
+// @include c.device(tablet) {
+//     .footer {
+//         @include c.flexLayout(column, flex-start, flex-start);
+//     }
+//     .grids {
+//         // grid-template-columns: repeat(1, minmax(0, 1fr));
+//         @include c.flexLayout(row, space-between, flex-start);
+//     }
+// }
+
+@media only screen and (min-width: 769px) and (max-width: 1280px) {
+    .footer {
+        @include c.flexLayout(column, flex-start, flex-start);
+    }
+    .grids {
+        // grid-template-columns: repeat(1, minmax(0, 1fr));
+        @include c.flexLayout(row, space-between, flex-start);
+    }
+    .info {
+        width: 100%;
+    }
+}
+

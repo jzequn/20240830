@@ -18,19 +18,19 @@ import {
 } from 'pdf-lib';
 
 
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/legacy/build/pdf.worker.min.mjs',
-    import.meta.url
-).toString();
-
+// if deploy on vercel, use legacy one.
 // pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 //     'pdfjs-dist/build/pdf.worker.min.mjs',
 //     import.meta.url,
 // ).toString();
 
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//     'pdfjs-dist/legacy/build/pdf.worker.min.mjs',
+//     import.meta.url
+// ).toString();
+
 // pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
-// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const PDFFiles = ({ url, binary, file, handleRemoveFile }) => { // file or binaryStr, binaryStr do not work sometimes, how to solve it?
 
